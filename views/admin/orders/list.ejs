@@ -1,0 +1,39 @@
+<div class="admin-toolbar">
+  <form action="/admin/orders" method="GET" class="admin-search-form">
+    <select name="status" onchange="this.form.submit()">
+      <option value="">All Statuses</option>
+      <% statuses.forEach(function(s) { %>
+        <option value="<%= s %>" <%= status === s ? 'selected' : '' %>><%= s.charAt(0).toUpperCase() + s.slice(1) %></option>
+      <% }) %>
+    </select>
+  </form>
+</div>
+
+<% if (orders.length) { %>
+  <table class="data-table">
+    <thead><tr><th>Order #</th><th>Customer</th><th>Date</th><th>Total</th><th>Payment</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      <% orders.forEach(function(o) { %>
+        <tr>
+          <td><%= o.orderNumber %></td>
+          <td><%= o.user ? o.user.name : 'Deleted user' %><br /><small><%= o.user ? o.user.email : '' %></small></td>
+          <td><%= o.createdAt.toDateString() %></td>
+          <td><%= currencySymbol %><%= o.grandTotal.toFixed(0) %></td>
+          <td><%= o.paymentMethod === 'cod' ? 'COD' : 'Card' %></td>
+          <td><span class="status-pill status-<%= o.status %>"><%= o.status %></span></td>
+          <td><a href="/admin/orders/<%= o._id %>" class="btn btn-outline btn-sm">Manage</a></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <% if (totalPages > 1) { %>
+    <div class="pagination">
+      <% for (let p = 1; p <= totalPages; p++) { %>
+        <a href="/admin/orders?page=<%= p %><%= status ? '&status=' + status : '' %>" class="<%= p === page ? 'active' : '' %>"><%= p %></a>
+      <% } %>
+    </div>
+  <% } %>
+<% } else { %>
+  <p class="empty-note">No orders found.</p>
+<% } %>

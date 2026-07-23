@@ -1,0 +1,79 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Checkout</h1>
+  </div>
+</section>
+
+<section class="container section checkout-layout">
+  <div class="checkout-form-wrap">
+    <% if (errors && errors.length) { %>
+      <div class="alert alert-error">
+        <ul><% errors.forEach(function(e) { %><li><%= e.msg %></li><% }) %></ul>
+      </div>
+    <% } %>
+
+    <form action="/checkout" method="POST" class="form">
+      <h3>Delivery Details</h3>
+      <div class="form-row">
+        <label>Full Name</label>
+        <input type="text" name="fullName" value="<%= (user.address && user.address.fullName) || user.name || '' %>" required />
+      </div>
+      <div class="form-row">
+        <label>Phone Number</label>
+        <input type="text" name="phone" value="<%= (user.address && user.address.phone) || user.phone || '' %>" required />
+      </div>
+      <div class="form-row">
+        <label>Address</label>
+        <input type="text" name="line1" value="<%= (user.address && user.address.line1) || '' %>" required placeholder="House #, street, area" />
+      </div>
+      <div class="form-row two-col">
+        <div>
+          <label>City</label>
+          <input type="text" name="city" value="<%= (user.address && user.address.city) || '' %>" required />
+        </div>
+        <div>
+          <label>Postal Code</label>
+          <input type="text" name="postalCode" value="<%= (user.address && user.address.postalCode) || '' %>" />
+        </div>
+      </div>
+
+      <h3>Payment Method</h3>
+      <div class="payment-options">
+        <label class="payment-option">
+          <input type="radio" name="paymentMethod" value="cod" checked />
+          <span>💵 Cash on Delivery</span>
+        </label>
+        <label class="payment-option">
+          <input type="radio" name="paymentMethod" value="card" />
+          <span>💳 Card (demo only, no real charge)</span>
+        </label>
+      </div>
+
+      <div class="form-row">
+        <label>Order Notes (optional)</label>
+        <textarea name="notes" rows="3" placeholder="E.g. leave at the front desk, ring the bell twice, etc."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-block btn-lg">Place Order</button>
+    </form>
+  </div>
+
+  <aside class="cart-summary">
+    <h3>Order Summary</h3>
+    <div class="checkout-lines">
+      <% lines.forEach(function(line) { %>
+        <div class="checkout-line">
+          <img src="<%= line.product.image %>" alt="<%= line.product.name %>" />
+          <div class="checkout-line-info">
+            <span><%= line.product.name %></span>
+            <span class="checkout-line-qty">Qty: <%= line.quantity %></span>
+          </div>
+          <span><%= currencySymbol %><%= line.lineTotal.toFixed(0) %></span>
+        </div>
+      <% }) %>
+    </div>
+    <div class="summary-row"><span>Subtotal</span><span><%= currencySymbol %><%= itemsTotal.toFixed(0) %></span></div>
+    <div class="summary-row"><span>Shipping</span><span><%= shippingFee === 0 ? 'FREE' : currencySymbol + shippingFee.toFixed(0) %></span></div>
+    <div class="summary-row total"><span>Total</span><span><%= currencySymbol %><%= grandTotal.toFixed(0) %></span></div>
+  </aside>
+</section>

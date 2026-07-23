@@ -1,0 +1,40 @@
+<section class="auth-page container section">
+  <div class="auth-card">
+    <h1>Create an Account</h1>
+    <p class="auth-sub">Join Sweet Crumb to track orders and save your details.</p>
+
+    <% if (errors && errors.length) { %>
+      <div class="alert alert-error">
+        <ul><% errors.forEach(function(e) { %><li><%= e.msg %></li><% }) %></ul>
+      </div>
+    <% } %>
+
+    <form action="/register" method="POST" class="form">
+      <div class="form-row">
+        <label>Full Name</label>
+        <input type="text" name="name" value="<%= formData.name || '' %>" required autofocus />
+      </div>
+      <div class="form-row">
+        <label>Email</label>
+        <input type="email" name="email" value="<%= formData.email || '' %>" required />
+      </div>
+      <div class="form-row">
+        <label>Phone (optional)</label>
+        <input type="text" name="phone" value="<%= formData.phone || '' %>" />
+      </div>
+      <div class="form-row two-col">
+        <div>
+          <label>Password</label>
+          <input type="password" name="password" required minlength="6" />
+        </div>
+        <div>
+          <label>Confirm Password</label>
+          <input type="password" name="confirmPassword" required minlength="6" />
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+    </form>
+
+    <p class="auth-switch">Already have an account? <a href="/login">Log in</a></p>
+  </div>
+</section>

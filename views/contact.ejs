@@ -1,0 +1,48 @@
+<section class="page-header">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>Questions, custom cake orders, or feedback — we'd love to hear from you.</p>
+  </div>
+</section>
+
+<section class="container section contact-grid">
+  <div class="contact-info">
+    <h2>Visit or Reach Us</h2>
+    <p>📍 12 Baker Street, Lahore, Pakistan</p>
+    <p>📞 +92 300 1234567</p>
+    <p>✉️ hello@sweetcrumb.test</p>
+    <p>🕒 Mon–Sat: 8:00 AM – 8:00 PM</p>
+  </div>
+
+  <div class="contact-form-wrap">
+    <% if (sent) { %>
+      <div class="alert alert-success">Thanks for reaching out! We'll reply within 24 hours.</div>
+    <% } %>
+    <% if (errors && errors.length) { %>
+      <div class="alert alert-error">
+        <ul>
+          <% errors.forEach(function(e) { %><li><%= e.msg %></li><% }) %>
+        </ul>
+      </div>
+    <% } %>
+    <form action="/contact" method="POST" class="form">
+      <div class="form-row">
+        <label>Name</label>
+        <input type="text" name="name" value="<%= formData.name || '' %>" required />
+      </div>
+      <div class="form-row">
+        <label>Email</label>
+        <input type="email" name="email" value="<%= formData.email || '' %>" required />
+      </div>
+      <div class="form-row">
+        <label>Subject</label>
+        <input type="text" name="subject" value="<%= formData.subject || '' %>" placeholder="Custom cake order, feedback, etc." />
+      </div>
+      <div class="form-row">
+        <label>Message</label>
+        <textarea name="message" rows="5" required><%= formData.message || '' %></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary">Send Message</button>
+    </form>
+  </div>
+</section>

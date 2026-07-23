@@ -1,0 +1,27 @@
+<% if (errors && errors.length) { %>
+  <div class="alert alert-error">
+    <ul><% errors.forEach(function(e) { %><li><%= e.msg %></li><% }) %></ul>
+  </div>
+<% } %>
+
+<form action="<%= isEdit ? '/admin/categories/' + category._id : '/admin/categories' %>" method="POST" class="form admin-form">
+  <div class="form-row">
+    <label>Category Name</label>
+    <input type="text" name="name" value="<%= category.name || '' %>" required />
+  </div>
+  <div class="form-row">
+    <label>Description</label>
+    <textarea name="description" rows="3"><%= category.description || '' %></textarea>
+  </div>
+  <div class="form-row">
+    <label>Image URL</label>
+    <input type="text" name="image" value="<%= category.image || '' %>" placeholder="https://..." />
+  </div>
+  <% if (isEdit) { %>
+    <div class="form-row checkbox-row">
+      <label><input type="checkbox" name="isActive" <%= category.isActive !== false ? 'checked' : '' %> /> Active (visible in store)</label>
+    </div>
+  <% } %>
+  <button type="submit" class="btn btn-primary"><%= isEdit ? 'Update Category' : 'Create Category' %></button>
+  <a href="/admin/categories" class="btn btn-outline">Cancel</a>
+</form>

@@ -1,0 +1,35 @@
+<div class="product-card">
+  <a href="/products/<%= product.slug %>" class="product-card-img">
+    <img src="<%= product.image %>" alt="<%= product.name %>" loading="lazy" />
+    <% if (product.discountPrice > 0 && product.discountPrice < product.price) { %>
+      <span class="badge badge-sale">-<%= Math.round(((product.price - product.discountPrice) / product.price) * 100) %>%</span>
+    <% } %>
+    <% if (product.stock < 1) { %>
+      <span class="badge badge-out">Out of Stock</span>
+    <% } %>
+  </a>
+  <div class="product-card-body">
+    <p class="product-card-category"><%= product.category && product.category.name ? product.category.name : '' %></p>
+    <h3 class="product-card-name"><a href="/products/<%= product.slug %>"><%= product.name %></a></h3>
+    <div class="product-card-rating">
+      <% for (let i = 1; i <= 5; i++) { %><span class="star <%= i <= Math.round(product.ratingAverage) ? 'filled' : '' %>">★</span><% } %>
+      <span class="rating-count">(<%= product.ratingCount || 0 %>)</span>
+    </div>
+    <div class="product-card-price">
+      <% if (product.discountPrice > 0 && product.discountPrice < product.price) { %>
+        <span class="price-old"><%= currencySymbol %><%= product.price.toFixed(0) %></span>
+        <span class="price-now"><%= currencySymbol %><%= product.discountPrice.toFixed(0) %></span>
+      <% } else { %>
+        <span class="price-now"><%= currencySymbol %><%= product.price.toFixed(0) %></span>
+      <% } %>
+    </div>
+    <form action="/cart/add" method="POST" class="product-card-form">
+      <input type="hidden" name="productId" value="<%= product._id %>" />
+      <input type="hidden" name="quantity" value="1" />
+      <input type="hidden" name="redirectTo" value="<%= currentPath %>" />
+      <button type="submit" class="btn btn-primary btn-block" <%= product.stock < 1 ? 'disabled' : '' %>>
+        <%= product.stock < 1 ? 'Out of Stock' : 'Add to Cart' %>
+      </button>
+    </form>
+  </div>
+</div>

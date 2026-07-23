@@ -1,0 +1,57 @@
+<div class="order-details-grid">
+  <div class="order-items-wrap">
+    <h3>Items</h3>
+    <table class="data-table">
+      <thead><tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th></tr></thead>
+      <tbody>
+        <% order.items.forEach(function(item) { %>
+          <tr>
+            <td class="cart-product-cell"><img src="<%= item.image %>" alt="<%= item.name %>" /><span><%= item.name %></span></td>
+            <td><%= currencySymbol %><%= item.price.toFixed(0) %></td>
+            <td><%= item.quantity %></td>
+            <td><%= currencySymbol %><%= (item.price * item.quantity).toFixed(0) %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+
+    <h3>Update Status</h3>
+    <form action="/admin/orders/<%= order._id %>/status" method="POST" class="status-form">
+      <select name="status">
+        <% statuses.forEach(function(s) { %>
+          <option value="<%= s %>" <%= order.status === s ? 'selected' : '' %>><%= s.charAt(0).toUpperCase() + s.slice(1) %></option>
+        <% }) %>
+      </select>
+      <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+  </div>
+
+  <aside class="cart-summary">
+    <h3>Customer</h3>
+    <p>
+      <%= order.user ? order.user.name : 'Deleted user' %><br />
+      <%= order.user ? order.user.email : '' %><br />
+      <%= order.user && order.user.phone ? order.user.phone : '' %>
+    </p>
+
+    <h3>Shipping To</h3>
+    <p>
+      <%= order.shipping.fullName %><br />
+      <%= order.shipping.phone %><br />
+      <%= order.shipping.line1 %>, <%= order.shipping.city %>
+      <% if (order.shipping.postalCode) { %> <%= order.shipping.postalCode %><% } %>
+    </p>
+
+    <h3>Payment</h3>
+    <p><%= order.paymentMethod === 'cod' ? 'Cash on Delivery' : 'Card' %></p>
+
+    <div class="summary-row"><span>Subtotal</span><span><%= currencySymbol %><%= order.itemsTotal.toFixed(0) %></span></div>
+    <div class="summary-row"><span>Shipping</span><span><%= order.shippingFee === 0 ? 'FREE' : currencySymbol + order.shippingFee.toFixed(0) %></span></div>
+    <div class="summary-row total"><span>Total</span><span><%= currencySymbol %><%= order.grandTotal.toFixed(0) %></span></div>
+
+    <% if (order.notes) { %>
+      <h3>Customer Notes</h3>
+      <p><%= order.notes %></p>
+    <% } %>
+  </aside>
+</div>

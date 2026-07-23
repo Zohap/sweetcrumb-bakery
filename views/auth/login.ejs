@@ -1,0 +1,27 @@
+<section class="auth-page container section">
+  <div class="auth-card">
+    <h1>Welcome Back</h1>
+    <p class="auth-sub">Log in to track orders and check out faster.</p>
+
+    <% if (errors && errors.length) { %>
+      <div class="alert alert-error">
+        <ul><% errors.forEach(function(e) { %><li><%= e.msg %></li><% }) %></ul>
+      </div>
+    <% } %>
+
+    <form action="/login" method="POST" class="form">
+      <input type="hidden" name="redirectTo" value="<%= redirectTo || '' %>" />
+      <div class="form-row">
+        <label>Email</label>
+        <input type="email" name="email" value="<%= formData.email || '' %>" required autofocus />
+      </div>
+      <div class="form-row">
+        <label>Password</label>
+        <input type="password" name="password" required />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">Log In</button>
+    </form>
+
+    <p class="auth-switch">Don't have an account? <a href="/register">Create one</a></p>
+  </div>
+</section>

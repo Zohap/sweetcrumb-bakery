@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %> | Admin - <%= storeName %></title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="/css/admin.css" />
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="admin-sidebar">
+      <div class="admin-brand">🥐 <span>Sweet Crumb</span><small>Admin Panel</small></div>
+      <nav class="admin-nav">
+        <a href="/admin" class="<%= currentPath === '/admin' ? 'active' : '' %>">📊 Dashboard</a>
+        <a href="/admin/products" class="<%= currentPath.startsWith('/admin/products') ? 'active' : '' %>">🧁 Products</a>
+        <a href="/admin/categories" class="<%= currentPath.startsWith('/admin/categories') ? 'active' : '' %>">🗂️ Categories</a>
+        <a href="/admin/orders" class="<%= currentPath.startsWith('/admin/orders') ? 'active' : '' %>">📦 Orders</a>
+        <a href="/admin/users" class="<%= currentPath.startsWith('/admin/users') ? 'active' : '' %>">👥 Customers</a>
+        <a href="/admin/messages" class="<%= currentPath.startsWith('/admin/messages') ? 'active' : '' %>">✉️ Messages</a>
+      </nav>
+      <div class="admin-sidebar-footer">
+        <a href="/" target="_blank">🔗 View Store</a>
+        <form action="/admin/logout" method="POST">
+          <button type="submit" class="link-button">🚪 Logout</button>
+        </form>
+      </div>
+    </aside>
+
+    <div class="admin-content">
+      <header class="admin-topbar">
+        <h1><%= title %></h1>
+        <div class="admin-topbar-user">👤 <%= currentUser ? currentUser.name : '' %></div>
+      </header>
+
+      <div class="admin-body-content">
+        <% if (typeof successMessages !== 'undefined' && successMessages.length) { %>
+          <% successMessages.forEach(function(msg) { %><div class="alert alert-success"><%= msg %></div><% }) %>
+        <% } %>
+        <% if (typeof errorMessages !== 'undefined' && errorMessages.length) { %>
+          <% errorMessages.forEach(function(msg) { %><div class="alert alert-error"><%= msg %></div><% }) %>
+        <% } %>
+        <%- body %>
+      </div>
+    </div>
+  </div>
+  <script src="/js/main.js"></script>
+</body>
+</html>

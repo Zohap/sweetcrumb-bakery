@@ -1,0 +1,39 @@
+<div class="admin-toolbar">
+  <form action="/admin/users" method="GET" class="admin-search-form">
+    <input type="text" name="q" placeholder="Search by name or email..." value="<%= q %>" />
+    <button type="submit" class="btn btn-outline btn-sm">Search</button>
+  </form>
+</div>
+
+<% if (users.length) { %>
+  <table class="data-table">
+    <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Orders</th><th>Total Spent</th><th>Status</th><th></th></tr></thead>
+    <tbody>
+      <% users.forEach(function(u) { %>
+        <tr>
+          <td><%= u.name %></td>
+          <td><%= u.email %></td>
+          <td><%= u.phone || '—' %></td>
+          <td><%= u.orderCount %></td>
+          <td><%= currencySymbol %><%= u.totalSpent.toFixed(0) %></td>
+          <td><span class="status-pill <%= u.isBlocked ? 'status-cancelled' : 'status-delivered' %>"><%= u.isBlocked ? 'Blocked' : 'Active' %></span></td>
+          <td>
+            <form action="/admin/users/<%= u._id %>/toggle-block" method="POST" onsubmit="return confirm('<%= u.isBlocked ? 'Unblock' : 'Block' %> this customer?');">
+              <button type="submit" class="btn btn-sm <%= u.isBlocked ? 'btn-outline' : 'btn-danger' %>"><%= u.isBlocked ? 'Unblock' : 'Block' %></button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <% if (totalPages > 1) { %>
+    <div class="pagination">
+      <% for (let p = 1; p <= totalPages; p++) { %>
+        <a href="/admin/users?page=<%= p %><%= q ? '&q=' + q : '' %>" class="<%= p === page ? 'active' : '' %>"><%= p %></a>
+      <% } %>
+    </div>
+  <% } %>
+<% } else { %>
+  <p class="empty-note">No customers found.</p>
+<% } %>

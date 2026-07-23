@@ -1,0 +1,52 @@
+<header class="site-header">
+  <div class="topbar">
+    <div class="container topbar-inner">
+     <span>🎂 Freshly baked every morning &middot; Free delivery over <%= currencySymbol %>3000</span>
+    </div>
+  </div>
+  <div class="container navbar">
+    <a href="/" class="brand">
+      <span class="brand-icon">🥐</span>
+      <span class="brand-name"><%= storeName %></span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">☰</button>
+
+    <nav class="main-nav" id="mainNav">
+      <a href="/" class="<%= currentPath === '/' ? 'active' : '' %>">Home</a>
+      <a href="/products" class="<%= currentPath.startsWith('/products') ? 'active' : '' %>">Products</a>
+      <a href="/about" class="<%= currentPath === '/about' ? 'active' : '' %>">About</a>
+      <a href="/contact" class="<%= currentPath === '/contact' ? 'active' : '' %>">Contact</a>
+    </nav>
+
+    <div class="nav-actions">
+      <form action="/products" method="GET" class="nav-search">
+        <input type="text" name="q" placeholder="Search cakes, breads..." value="<%= typeof query !== 'undefined' && query.q ? query.q : '' %>" />
+        <button type="submit" aria-label="Search">🔍</button>
+      </form>
+
+      <a href="/cart" class="cart-link">
+        🛒 Cart
+        <% if (typeof cartItemCount !== 'undefined' && cartItemCount > 0) { %>
+          <span class="cart-badge"><%= cartItemCount %></span>
+        <% } %>
+      </a>
+
+      <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+        <div class="account-menu">
+          <a href="/account" class="account-link">👤 <%= currentUser.name.split(' ')[0] %></a>
+          <div class="account-dropdown">
+            <a href="/account">My Account</a>
+            <a href="/orders">My Orders</a>
+            <form action="/logout" method="POST">
+              <button type="submit" class="link-button">Logout</button>
+            </form>
+          </div>
+        </div>
+      <% } else { %>
+        <a href="/login" class="btn btn-outline btn-sm">Log In</a>
+        <a href="/register" class="btn btn-primary btn-sm">Sign Up</a>
+      <% } %>
+    </div>
+  </div>
+</header>

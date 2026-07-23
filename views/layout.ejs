@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= typeof title !== 'undefined' ? title + ' | ' + storeName : storeName %></title>
+  <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+  <%- include('partials/header') %>
+
+  <main class="site-main">
+    <% if (typeof successMessages !== 'undefined' && successMessages.length) { %>
+      <div class="container">
+        <% successMessages.forEach(function(msg) { %>
+          <div class="alert alert-success"><%= msg %></div>
+        <% }) %>
+      </div>
+    <% } %>
+    <% if (typeof errorMessages !== 'undefined' && errorMessages.length) { %>
+      <div class="container">
+        <% errorMessages.forEach(function(msg) { %>
+          <div class="alert alert-error"><%= msg %></div>
+        <% }) %>
+      </div>
+    <% } %>
+
+    <%- body %>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>

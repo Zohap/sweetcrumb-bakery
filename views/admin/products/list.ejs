@@ -1,0 +1,46 @@
+<div class="admin-toolbar">
+  <form action="/admin/products" method="GET" class="admin-search-form">
+    <input type="text" name="q" placeholder="Search products..." value="<%= q %>" />
+    <button type="submit" class="btn btn-outline btn-sm">Search</button>
+  </form>
+  <a href="/admin/products/new" class="btn btn-primary">+ Add Product</a>
+</div>
+
+<% if (products.length) { %>
+  <table class="data-table">
+    <thead>
+      <tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr>
+    </thead>
+    <tbody>
+      <% products.forEach(function(p) { %>
+        <tr>
+          <td><img src="<%= p.image %>" alt="<%= p.name %>" class="admin-thumb" /></td>
+          <td><%= p.name %><% if (p.isFeatured) { %> <span class="tag">Featured</span><% } %></td>
+          <td><%= p.category ? p.category.name : '—' %></td>
+          <td>
+            <%= currencySymbol %><%= p.price.toFixed(0) %>
+            <% if (p.discountPrice > 0) { %><br /><small>Sale: <%= currencySymbol %><%= p.discountPrice.toFixed(0) %></small><% } %>
+          </td>
+          <td class="<%= p.stock <= 5 ? 'text-warn' : '' %>"><%= p.stock %></td>
+          <td><span class="status-pill <%= p.isActive ? 'status-delivered' : 'status-cancelled' %>"><%= p.isActive ? 'Active' : 'Hidden' %></span></td>
+          <td class="admin-actions">
+            <a href="/admin/products/<%= p._id %>/edit" class="btn btn-outline btn-sm">Edit</a>
+            <form action="/admin/products/<%= p._id %>/delete" method="POST" onsubmit="return confirm('Delete this product permanently?');">
+              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <% if (totalPages > 1) { %>
+    <div class="pagination">
+      <% for (let p = 1; p <= totalPages; p++) { %>
+        <a href="/admin/products?page=<%= p %><%= q ? '&q=' + q : '' %>" class="<%= p === page ? 'active' : '' %>"><%= p %></a>
+      <% } %>
+    </div>
+  <% } %>
+<% } else { %>
+  <p class="empty-note">No products found. <a href="/admin/products/new">Add your first product</a>.</p>
+<% } %>

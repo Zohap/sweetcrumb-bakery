@@ -1,0 +1,27 @@
+<% if (messages.length) { %>
+  <div class="message-list">
+    <% messages.forEach(function(m) { %>
+      <div class="message-card <%= m.isRead ? '' : 'unread' %>">
+        <div class="message-card-head">
+          <strong><%= m.name %></strong>
+          <span><%= m.email %></span>
+          <span class="review-date"><%= m.createdAt.toLocaleString() %></span>
+        </div>
+        <p class="message-subject"><%= m.subject %></p>
+        <p><%= m.message %></p>
+        <div class="admin-actions">
+          <% if (!m.isRead) { %>
+            <form action="/admin/messages/<%= m._id %>/read" method="POST">
+              <button type="submit" class="btn btn-outline btn-sm">Mark as Read</button>
+            </form>
+          <% } %>
+          <form action="/admin/messages/<%= m._id %>/delete" method="POST" onsubmit="return confirm('Delete this message?');">
+            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+          </form>
+        </div>
+      </div>
+    <% }) %>
+  </div>
+<% } else { %>
+  <p class="empty-note">No messages yet.</p>
+<% } %>

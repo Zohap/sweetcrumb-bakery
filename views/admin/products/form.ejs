@@ -1,0 +1,77 @@
+<% if (errors && errors.length) { %>
+  <div class="alert alert-error">
+    <ul><% errors.forEach(function(e) { %><li><%= e.msg %></li><% }) %></ul>
+  </div>
+<% } %>
+
+<form action="<%= isEdit ? '/admin/products/' + product._id : '/admin/products' %>" method="POST" enctype="multipart/form-data" class="form admin-form">
+  <div class="form-grid">
+    <div class="form-row">
+      <label>Product Name</label>
+      <input type="text" name="name" value="<%= product.name || '' %>" required />
+    </div>
+    <div class="form-row">
+      <label>Category</label>
+      <select name="category" required>
+        <option value="">Select category</option>
+        <% categories.forEach(function(cat) { %>
+          <option value="<%= cat._id %>" <%= (product.category && (product.category._id || product.category).toString() === cat._id.toString()) ? 'selected' : '' %>>
+            <%= cat.name %>
+          </option>
+        <% }) %>
+      </select>
+    </div>
+    <div class="form-row">
+      <label>Price (<%= currencySymbol %>)</label>
+      <input type="number" name="price" value="<%= product.price || '' %>" step="0.01" min="0" required />
+    </div>
+    <div class="form-row">
+      <label>Discount Price (optional)</label>
+      <input type="number" name="discountPrice" value="<%= product.discountPrice || '' %>" step="0.01" min="0" />
+    </div>
+    <div class="form-row">
+      <label>Stock Quantity</label>
+      <input type="number" name="stock" value="<%= typeof product.stock !== 'undefined' ? product.stock : '' %>" min="0" required />
+    </div>
+    <div class="form-row">
+      <label>SKU (optional)</label>
+      <input type="text" name="sku" value="<%= product.sku || '' %>" />
+    </div>
+    <div class="form-row">
+      <label>Weight (grams, optional)</label>
+      <input type="number" name="weightGrams" value="<%= product.weightGrams || '' %>" min="0" />
+    </div>
+    <div class="form-row">
+      <label>Image URL (used if no file is uploaded)</label>
+      <input type="text" name="imageUrl" value="<%= (product.image && !product.image.startsWith('/uploads')) ? product.image : '' %>" placeholder="https://..." />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <label>Or Upload an Image</label>
+    <input type="file" name="imageFile" accept="image/*" />
+    <% if (product.image) { %>
+      <img src="<%= product.image %>" alt="current image" class="admin-thumb" style="margin-top:8px;" />
+    <% } %>
+  </div>
+
+  <div class="form-row">
+    <label>Description</label>
+    <textarea name="description" rows="4"><%= product.description || '' %></textarea>
+  </div>
+
+  <div class="form-row">
+    <label>Ingredients (optional)</label>
+    <textarea name="ingredients" rows="2"><%= product.ingredients || '' %></textarea>
+  </div>
+
+  <div class="form-row checkbox-row">
+    <label><input type="checkbox" name="isFeatured" <%= product.isFeatured ? 'checked' : '' %> /> Featured on homepage</label>
+    <% if (isEdit) { %>
+      <label><input type="checkbox" name="isActive" <%= product.isActive !== false ? 'checked' : '' %> /> Active (visible in store)</label>
+    <% } %>
+  </div>
+
+  <button type="submit" class="btn btn-primary"><%= isEdit ? 'Update Product' : 'Create Product' %></button>
+  <a href="/admin/products" class="btn btn-outline">Cancel</a>
+</form>

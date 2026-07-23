@@ -1,0 +1,80 @@
+<div class="stats-grid">
+  <div class="stat-box">
+    <span class="stat-icon">💰</span>
+    <div><strong><%= currencySymbol %><%= stats.totalRevenue.toFixed(0) %></strong><span>Total Revenue</span></div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-icon">📦</span>
+    <div><strong><%= stats.totalOrders %></strong><span>Total Orders</span></div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-icon">⏳</span>
+    <div><strong><%= stats.pendingOrders %></strong><span>Pending Orders</span></div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-icon">🧁</span>
+    <div><strong><%= stats.totalProducts %></strong><span>Active Products</span></div>
+  </div>
+  <div class="stat-box <%= stats.lowStockCount > 0 ? 'warn' : '' %>">
+    <span class="stat-icon">⚠️</span>
+    <div><strong><%= stats.lowStockCount %></strong><span>Low Stock Items</span></div>
+  </div>
+  <div class="stat-box">
+    <span class="stat-icon">👥</span>
+    <div><strong><%= stats.totalCustomers %></strong><span>Customers</span></div>
+  </div>
+  <div class="stat-box <%= stats.unreadMessages > 0 ? 'warn' : '' %>">
+    <span class="stat-icon">✉️</span>
+    <div><strong><%= stats.unreadMessages %></strong><span>Unread Messages</span></div>
+  </div>
+</div>
+
+<div class="admin-panels">
+  <div class="admin-panel">
+    <div class="admin-panel-head">
+      <h3>Recent Orders</h3>
+      <a href="/admin/orders">View all &rarr;</a>
+    </div>
+    <% if (recentOrders.length) { %>
+      <table class="data-table">
+        <thead><tr><th>Order #</th><th>Customer</th><th>Total</th><th>Status</th><th></th></tr></thead>
+        <tbody>
+          <% recentOrders.forEach(function(o) { %>
+            <tr>
+              <td><%= o.orderNumber %></td>
+              <td><%= o.user ? o.user.name : 'Deleted user' %></td>
+              <td><%= currencySymbol %><%= o.grandTotal.toFixed(0) %></td>
+              <td><span class="status-pill status-<%= o.status %>"><%= o.status %></span></td>
+              <td><a href="/admin/orders/<%= o._id %>" class="btn btn-outline btn-sm">View</a></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p class="empty-note">No orders yet.</p>
+    <% } %>
+  </div>
+
+  <div class="admin-panel">
+    <div class="admin-panel-head">
+      <h3>Top Rated Products</h3>
+      <a href="/admin/products">Manage &rarr;</a>
+    </div>
+    <% if (topProducts.length) { %>
+      <table class="data-table">
+        <thead><tr><th>Product</th><th>Rating</th><th>Stock</th></tr></thead>
+        <tbody>
+          <% topProducts.forEach(function(p) { %>
+            <tr>
+              <td><%= p.name %></td>
+              <td>⭐ <%= p.ratingAverage.toFixed(1) %> (<%= p.ratingCount %>)</td>
+              <td><%= p.stock %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p class="empty-note">No products yet.</p>
+    <% } %>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<section class="container section error-page">
+  <h1>⚠️ Something Went Wrong</h1>
+  <p><%= message %></p>
+  <% if (error && error.stack) { %>
+    <pre class="error-stack"><%= error.stack %></pre>
+  <% } %>
+  <a href="/" class="btn btn-primary">Back to Home</a>
+</section>
