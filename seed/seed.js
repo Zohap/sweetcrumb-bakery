@@ -70,7 +70,7 @@ const productsData = [
 
   // Breads
   { name: 'Classic Sourdough Loaf', category: 'Breads', price: 350, stock: 25, isFeatured: true,
-    image: 'https://images.unsplash.com/photo-1585478259715-4d3a5a1c0a08?w=700',
+    image:'https://images.pexels.com/photos/2661996/pexels-photo-2661996.jpeg?auto=compress&cs=tinysrgb&w=700',
     description: 'Naturally leavened sourdough with a crisp crust and open, airy crumb.',
     ingredients: 'Flour, water, salt, sourdough starter.', weightGrams: 800 },
   { name: 'Whole Wheat Multigrain Loaf', category: 'Breads', price: 300, stock: 20,
@@ -82,7 +82,7 @@ const productsData = [
     description: 'Crispy on the outside, soft on the inside — a true French classic.',
     ingredients: 'Flour, water, yeast, salt.', weightGrams: 300 },
   { name: 'Garlic Herb Focaccia', category: 'Breads', price: 400, stock: 12,
-    image: 'https://images.unsplash.com/photo-1573140401552-3fab0b24427f?w=700',
+   image: 'https://images.pexels.com/photos/30666809/pexels-photo-30666809.jpeg?auto=compress&cs=tinysrgb&w=700',
     description: 'Olive oil focaccia topped with roasted garlic and fresh rosemary.',
     ingredients: 'Flour, olive oil, garlic, rosemary, sea salt.', weightGrams: 600 },
 
@@ -92,7 +92,7 @@ const productsData = [
     description: 'Flaky, laminated croissant made with French butter.',
     ingredients: 'Flour, butter, milk, yeast, sugar.', weightGrams: 90 },
   { name: 'Almond Danish', category: 'Pastries', price: 220, stock: 18,
-    image: 'https://images.unsplash.com/photo-1509365390695-33acf7326b34?w=700',
+   image: 'https://images.pexels.com/photos/8480687/pexels-photo-8480687.jpeg?auto=compress&cs=tinysrgb&w=700',
     description: 'Puff pastry filled with almond cream and toasted almond flakes.',
     ingredients: 'Puff pastry, almond paste, butter, sugar.', weightGrams: 110 },
   { name: 'Chocolate Pain au Chocolat', category: 'Pastries', price: 180, stock: 22,
@@ -106,11 +106,11 @@ const productsData = [
     description: 'Chewy cookies loaded with semi-sweet chocolate chunks.',
     ingredients: 'Flour, butter, brown sugar, chocolate chips, eggs.', weightGrams: 300 },
   { name: 'Oatmeal Raisin Cookies (6pc)', category: 'Cookies', price: 400, stock: 20,
-    image: 'https://images.unsplash.com/photo-1490567674331-72135e9d3ed6?w=700',
+   image: 'https://images.pexels.com/photos/8837035/pexels-photo-8837035.jpeg?auto=compress&cs=tinysrgb&w=700',
     description: 'Soft oatmeal cookies with plump raisins and a hint of cinnamon.',
     ingredients: 'Oats, flour, raisins, cinnamon, butter, brown sugar.', weightGrams: 300 },
   { name: 'Double Chocolate Cookies (6pc)', category: 'Cookies', price: 480, stock: 4,
-    image: 'https://images.unsplash.com/photo-1548365328-8b849e6c7b5f?w=700',
+   image: 'https://images.pexels.com/photos/2377477/pexels-photo-2377477.jpeg?auto=compress&cs=tinysrgb&w=700',
     description: 'Fudgy cocoa cookies stuffed with white and dark chocolate chunks.',
     ingredients: 'Flour, cocoa powder, white chocolate, dark chocolate, butter.', weightGrams: 320 },
 
@@ -124,7 +124,7 @@ const productsData = [
     description: 'Moist cupcakes filled with salted caramel and topped with caramel buttercream.',
     ingredients: 'Flour, caramel, sea salt, butter, sugar.', weightGrams: 340 },
   { name: 'Red Velvet Cupcakes (4pc)', category: 'Cupcakes', price: 550, stock: 0,
-    image: 'https://images.unsplash.com/photo-1614203858517-c8934f9ff742?w=700',
+   image: 'https://images.pexels.com/photos/2525682/pexels-photo-2525682.png?auto=compress&cs=tinysrgb&w=700',
     description: 'Mini red velvet cakes topped with cream cheese frosting.',
     ingredients: 'Flour, cocoa, buttermilk, cream cheese, butter.', weightGrams: 320 },
 

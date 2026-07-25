@@ -119,18 +119,6 @@ Copy `.env.example` to `.env` and edit as needed:
 ```bash
 cp .env.example .env
 ```
-Key variables:
-```
-PORT=3000
-MONGODB_URI=mongodb://127.0.0.1:27017/sweetcrumb
-SESSION_SECRET=some_long_random_string
-ADMIN_EMAIL=admin@sweetcrumb.com
-ADMIN_PASSWORD=Admin@12345
-```
-If you're using MongoDB Atlas, set `MONGODB_URI` to your Atlas connection string, e.g.:
-```
-MONGODB_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/sweetcrumb
-```
 
 ### 4. Seed the database
 This creates the admin account, a demo customer account, categories, and ~19 sample products:
