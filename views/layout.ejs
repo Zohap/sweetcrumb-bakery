@@ -6,6 +6,7 @@
   <title><%= typeof title !== 'undefined' ? title + ' | ' + storeName : storeName %></title>
   <link rel="icon" href="/images/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/css/style.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.4/dist/aos.css">
 </head>
 <body>
   <%- include('partials/header') %>
@@ -30,6 +31,8 @@
   </main>
 
   <%- include('partials/footer') %>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script src="/js/main.js"></script>
   <script src="/js/main.js"></script>
 </body>
 </html>

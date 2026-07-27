@@ -1293,3 +1293,152 @@ ul {
     grid-template-columns: 1fr;
   }
 }
+/*==========================
+Animations
+==========================*/
+
+html{
+    scroll-behavior:smooth;
+}
+
+/* Floating Hero */
+
+.floating{
+    animation:float 4s ease-in-out infinite;
+}
+
+@keyframes float{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-18px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+
+/* Product Cards */
+
+.product-card{
+
+transition:.4s;
+overflow:hidden;
+
+}
+
+.product-card img{
+
+transition:.6s;
+
+}
+
+.product-card:hover{
+
+transform:translateY(-12px);
+box-shadow:0 18px 45px rgba(0,0,0,.18);
+
+}
+
+.product-card:hover img{
+
+transform:scale(1.08);
+
+}
+
+.product-card:hover .btn{
+
+transform:scale(1.05);
+
+}
+
+/* Category */
+
+.category-card{
+
+transition:.35s;
+
+}
+
+.category-card img{
+
+transition:.5s;
+
+}
+
+.category-card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 15px 40px rgba(0,0,0,.15);
+
+}
+
+.category-card:hover img{
+
+transform:scale(1.08);
+
+}
+
+/* Buttons */
+
+.btn{
+
+transition:.35s;
+
+}
+
+.btn:hover{
+
+box-shadow:0 10px 25px rgba(193,80,46,.35);
+
+}
+
+/* Promo */
+
+.promo-item{
+
+transition:.4s;
+
+}
+
+.promo-item:hover{
+
+transform:translateY(-8px);
+
+}
+
+/* Navbar */
+
+.site-header{
+
+transition:.35s;
+
+}
+
+.site-header.scrolled{
+
+backdrop-filter:blur(10px);
+
+box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+}
+
+/* Newsletter */
+
+.newsletter{
+
+transition:.4s;
+
+}
+
+.newsletter:hover{
+
+transform:scale(1.02);
+
+}
