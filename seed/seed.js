@@ -1,9 +1,3 @@
-/**
- * Seed script — populates the database with an admin account, categories,
- * and sample products so the app is usable right after setup.
- *
- * Run with: npm run seed
- */
 require('dotenv').config();
 const mongoose = require('mongoose');
 const connectDB = require('../config/db');
@@ -158,7 +152,7 @@ async function seed() {
     console.log('• Admin account already exists, skipping.');
   }
 
-  // --- Demo customer (handy for testing checkout) ---
+  // --- Demo customer  ---
   const demoEmail = 'customer@sweetcrumb.com';
   let demoCustomer = await User.findOne({ email: demoEmail });
   if (!demoCustomer) {
