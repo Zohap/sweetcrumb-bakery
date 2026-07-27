@@ -133,19 +133,7 @@ npm run dev     # with nodemon (auto-restart)
 # or
 npm start       # plain node
 ```
-Visit:
-- Customer site → **http://localhost:3000**
-- Admin panel → **http://localhost:3000/admin/login**
 
-### Default seeded logins
-| Role     | Email                    | Password       |
-|----------|---------------------------|----------------|
-| Admin    | admin@sweetcrumb.com      | Admin@12345    |
-| Customer | customer@sweetcrumb.com   | Customer@123   |
-
-*(You can change these in `.env` before running the seed script.)*
-
----
 
 ## 🗄️ Database Notes
 - This project uses **MongoDB / Mongoose** exclusively — no SQL database is involved.
@@ -154,33 +142,6 @@ Visit:
 
 ---
 
-## ☁️ Deployment Guide
-
-You can deploy this as a single Node.js service. Two common, free-tier-friendly options:
-
-### Option A: Render.com (or Railway/Fly.io) + MongoDB Atlas
-1. Push this project to a GitHub repository.
-2. Create a free MongoDB Atlas cluster at https://www.mongodb.com/atlas — whitelist all IPs (0.0.0.0/0) for simplicity, and copy the connection string.
-3. On Render.com: **New → Web Service** → connect your repo.
-   - Build command: `npm install`
-   - Start command: `npm start`
-   - Add environment variables from your `.env` (MONGODB_URI, SESSION_SECRET, ADMIN_EMAIL, ADMIN_PASSWORD, STORE_NAME, CURRENCY_SYMBOL, PORT).
-4. After the first deploy, open a shell/console on the host (or run once locally pointed at the Atlas URI) and run `npm run seed` to populate initial data.
-5. Your live URL will be something like `https://sweetcrumb-bakery.onrender.com`.
-
-### Option B: A VPS (DigitalOcean, AWS EC2, etc.)
-1. Install Node.js and MongoDB (or just Node.js if using Atlas) on the server.
-2. Clone/upload the project, run `npm install --production`.
-3. Create `.env` with production values.
-4. Run with a process manager: `npm install -g pm2 && pm2 start server.js --name sweetcrumb`.
-5. Put Nginx in front for a domain name + HTTPS (via Let's Encrypt/Certbot).
-6. Run `npm run seed` once to populate initial data.
-
-> **Note:** Whichever platform you choose, make sure `SESSION_SECRET` is a long random
-> string in production, and that your MongoDB instance is not open to the public
-> internet without authentication.
-
----
 
 ## 🔐 Security Notes
 - Passwords are hashed with bcrypt before being stored (never stored in plain text).
@@ -190,6 +151,3 @@ You can deploy this as a single Node.js service. Two common, free-tier-friendly 
 - Uploaded product images are restricted by file type (png/jpg/jpeg/webp/gif) and size (3MB max).
 
 ---
-
-## 📝 License
-This project was built as an educational/demo full-stack e-commerce submission. Free to use and modify.
