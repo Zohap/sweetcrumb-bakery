@@ -99,50 +99,9 @@ sweetcrumb-bakery/
 ├── .env.example
 └── README.md
 ```
-
----
-
-## 🚀 Getting Started (Local Setup)
-
-### 1. Prerequisites
-- Node.js 18+ and npm
-- MongoDB running locally, **or** a free MongoDB Atlas cluster
-
-### 2. Install dependencies
-```bash
-cd sweetcrumb-bakery
-npm install
+## Visit the Website
+https://sweetcrumb-bakery-production.up.railway.app/
 ```
-
-### 3. Configure environment variables
-Copy `.env.example` to `.env` and edit as needed:
-```bash
-cp .env.example .env
-```
-
-### 4. Seed the database
-This creates the admin account, a demo customer account, categories, and ~19 sample products:
-```bash
-npm run seed
-```
-You should see output confirming the admin login and demo customer credentials.
-
-### 5. Run the app
-```bash
-npm run dev     # with nodemon (auto-restart)
-# or
-npm start       # plain node
-```
-
-
-## 🗄️ Database Notes
-- This project uses **MongoDB / Mongoose** exclusively — no SQL database is involved.
-- Collections are created automatically on first write: `users`, `categories`, `products`, `carts`, `orders`, `reviews`, `contactmessages`, and `sessions` (used by connect-mongo for session storage).
-- To reset all data, drop the database (e.g. `mongosh` → `use sweetcrumb` → `db.dropDatabase()`) and re-run `npm run seed`.
-
----
-
-
 ## 🔐 Security Notes
 - Passwords are hashed with bcrypt before being stored (never stored in plain text).
 - Sessions are httpOnly cookies backed by a MongoDB-based session store.
