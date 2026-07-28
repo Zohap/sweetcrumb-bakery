@@ -31,6 +31,13 @@ document.addEventListener('DOMContentLoaded', function () {
     el.style.transitionDelay = (i % 6) * 0.06 + 's';
   });
 
+  function revealIfVisible(el) {
+    var rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      el.classList.add('is-visible');
+    }
+  }
+
   if ('IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
@@ -39,9 +46,18 @@ document.addEventListener('DOMContentLoaded', function () {
           observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15 });
+    }, { threshold: 0 });
     animatedEls.forEach(function (el) { observer.observe(el); });
+
+    // Safety net: force-reveal anything already on screen right away
+    animatedEls.forEach(revealIfVisible);
+    // Re-check once more after images finish loading (layout may shift)
+    window.addEventListener('load', function () {
+      animatedEls.forEach(revealIfVisible);
+    });
   } else {
     animatedEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
+
+ 
 });
