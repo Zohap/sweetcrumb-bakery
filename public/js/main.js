@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(function () { el.remove(); }, 500);
     }, 4000);
   });
+  
   // Hero entrance animation
   var heroText = document.querySelector('.hero-text');
   var heroArt = document.querySelector('.hero-art');
