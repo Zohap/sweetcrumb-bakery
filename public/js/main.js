@@ -15,43 +15,32 @@ document.addEventListener('DOMContentLoaded', function () {
       setTimeout(function () { el.remove(); }, 500);
     }, 4000);
   });
-});
-// Initialize AOS
+  // Hero entrance animation
+  var heroText = document.querySelector('.hero-text');
+  var heroArt = document.querySelector('.hero-art');
+  if (heroText) heroText.classList.add('hero-in');
+  if (heroArt) heroArt.classList.add('hero-in-art');
 
-AOS.init({
-    duration:900,
-    once:true,
-    offset:80
-});
+  // Scroll reveal animation for cards and sections
+  var animatedEls = document.querySelectorAll(
+    '.category-card, .product-card, .promo-item, .stat-card'
+  );
+  animatedEls.forEach(function (el, i) {
+    el.classList.add('scroll-fade');
+    el.style.transitionDelay = (i % 6) * 0.06 + 's';
+  });
 
-
-// Navbar Animation
-
-window.addEventListener("scroll",()=>{
-
-const header=document.querySelector(".site-header");
-
-if(window.scrollY>40){
-
-header.classList.add("scrolled");
-
-}
-
-else{
-
-header.classList.remove("scrolled");
-
-}
-
-});
-
-
-// Stagger Product Cards
-
-const cards=document.querySelectorAll(".product-card");
-
-cards.forEach((card,index)=>{
-
-card.style.animationDelay=`${index*0.08}s`;
-
+  if ('IntersectionObserver' in window) {
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    animatedEls.forEach(function (el) { observer.observe(el); });
+  } else {
+    animatedEls.forEach(function (el) { el.classList.add('is-visible'); });
+  }
 });
