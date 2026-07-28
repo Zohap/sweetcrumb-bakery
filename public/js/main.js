@@ -31,14 +31,11 @@ document.addEventListener('DOMContentLoaded', function () {
     el.style.transitionDelay = (i % 6) * 0.06 + 's';
   });
 
-  function revealIfVisible(el) {
-    var rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      el.classList.add('is-visible');
-    }
+  function revealAll() {
+    animatedEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  if ('IntersectionObserver' in window) {
+  if (animatedEls.length && 'IntersectionObserver' in window) {
     var observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
@@ -48,16 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     }, { threshold: 0 });
     animatedEls.forEach(function (el) { observer.observe(el); });
-
-    // Safety net: force-reveal anything already on screen right away
-    animatedEls.forEach(revealIfVisible);
-    // Re-check once more after images finish loading (layout may shift)
-    window.addEventListener('load', function () {
-      animatedEls.forEach(revealIfVisible);
-    });
-  } else {
-    animatedEls.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
- 
+  // Safety net: no matter what happens above, force everything visible
+  // shortly after load so nothing ever stays permanently hidden.
+  setTimeout(revealAll, 1000);
+  // Hero entrance animation
+  
 });
