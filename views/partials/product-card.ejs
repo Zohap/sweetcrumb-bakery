@@ -1,4 +1,4 @@
-<div class="product-card reveal">
+<div class="product-card" data-aos="zoom-in-up">
   <a href="/products/<%= product.slug %>" class="product-card-img">
     <img src="<%= product.image %>" alt="<%= product.name %>" loading="lazy" />
     <% if (product.discountPrice > 0 && product.discountPrice < product.price) { %>

@@ -1,6 +1,6 @@
 <section class="hero">
   <div class="container hero-inner">
-    <div class="hero-text" data-aos="fade-right">
+    <div class="hero-text" data-aos="fade-right" data-aos-duration="1000">
       <span class="eyebrow">Baked Fresh, Every Single Day</span>
       <h1>Warm bread, sweet cakes, and a whole lot of crumbs.</h1>
       <p>Sweet Crumb is a small artisan bakery bringing handcrafted breads, cakes, and pastries to your doorstep — made with real butter, real sugar, and zero shortcuts.</p>
@@ -9,7 +9,8 @@
         <a href="/about" class="btn btn-outline btn-lg">Our Story</a>
       </div>
     </div>
-    <div class="hero-art floating" data-aos="zoom-in">🍰🥖🧁🥐</div>
+    <div class="hero-art" data-aos="fade-left"  data-aos-duration="1000"
+     data-aos-delay="300">🍰🥖🧁🥐</div>
   </div>
 </section>
 
@@ -18,9 +19,9 @@
   <div class="section-head">
     <h2>Shop by Category</h2>
   </div>
-  <div class="category-grid" data-aos="fade-up">
+  <div class="category-grid" >
     <% categories.forEach(function(cat) { %>
-      <a href="/products?category=<%= cat.slug %>" class="category-card">
+      <a href="/products?category=<%= cat.slug %>" class="category-card"  data-aos="fade-up">
         <img src="<%= cat.image || '/images/placeholder-category.svg' %>" alt="<%= cat.name %>" />
         <span><%= cat.name %></span>
       </a>
@@ -35,7 +36,7 @@
     <h2>Featured Favourites</h2>
     <a href="/products" class="section-link">View all &rarr;</a>
   </div>
-  <div class="product-grid" data-aos="fade-up">
+  <div class="product-grid" >
     <% featured.forEach(function(product) { %>
       <%- include('partials/product-card', { product: product }) %>
     <% }) %>
@@ -44,8 +45,8 @@
 <% } %>
 
 <section class="promo-strip">
-  <div class="container promo-grid" data-aos="fade-up">
-    <div class="promo-item">
+  <div class="container promo-grid" data-aos="fade-up" >
+    <div class="promo-item" >
       <span>🚚</span>
      <div><strong>Free Delivery</strong><p>On orders over <%= currencySymbol %>3000</p></div>
     </div>
@@ -78,7 +79,7 @@
 </section>
 <% } %>
 
-<section class="newsletter" data-aos="zoom-in">
+<section class="newsletter" >
   <div class="container newsletter-inner">
     <h2>Get 10% off your first order</h2>
     <p>Have a question, a custom cake request, or just want to say hi? <a href="/contact">Contact us</a> and we'll get back to you.</p>
