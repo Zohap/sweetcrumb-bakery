@@ -21,7 +21,7 @@
   </div>
   <div class="category-grid" >
     <% categories.forEach(function(cat) { %>
-      <a href="/products?category=<%= cat.slug %>" class="category-card"  data-aos="fade-up">
+      <a href="/products?category=<%= cat.slug %>" class="category-card"  data-aos="fade-left">
         <img src="<%= cat.image || '/images/placeholder-category.svg' %>" alt="<%= cat.name %>" />
         <span><%= cat.name %></span>
       </a>
