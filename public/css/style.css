@@ -1177,47 +1177,176 @@ ul {
 }
 
 /*  Responsive */
-@media (max-width: 860px) {
 
-  .hero-inner,
-  .about-grid,
-  .contact-grid,
-  .account-grid,
-  .products-layout,
-  .product-details-grid,
-  .cart-layout,
-  .checkout-layout,
-  .order-details-grid {
-    grid-template-columns: 1fr;
-  }
 
-  .nav-toggle {
-    display: block;
-  }
+@media (max-width:768px){
 
-  .main-nav {
-    display: none;
-    flex-direction: column;
-    width: 100%;
-    background: white;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    padding: 14px 20px;
-    box-shadow: var(--shadow-lg);
-  }
+    html, body{
+        overflow-x:hidden;
+    }
 
-  .main-nav.open {
-    display: flex;
-  }
 
-  .nav-search {
-    display: none;
-  }
+    /* HEADER */
 
-  .navbar {
-    position: relative;
-  }
+    .site-header .navbar{
+        position:relative;
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        height:70px;
+    }
+
+
+    /* Hamburger LEFT */
+
+    .site-header .nav-toggle{
+        display:block;
+        order:1;
+        background:none;
+        border:none;
+        padding:0;
+        font-size:26px;
+        line-height:1;
+        z-index:10;
+        cursor:pointer;
+    }
+
+
+    /* Logo CENTER */
+
+    .site-header .brand{
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+        display:flex;
+        align-items:center;
+        gap:5px;
+        white-space:nowrap;
+        z-index:5;
+    }
+
+
+    .site-header .brand-icon{
+        font-size:22px;
+    }
+
+
+    .site-header .brand-name{
+        font-size:18px;
+    }
+
+
+    /* RIGHT SIDE */
+
+    .site-header .nav-actions{
+        order:3;
+        margin-left:auto;
+        display:flex;
+        align-items:center;
+        z-index:10;
+    }
+
+
+    /* Hide search */
+
+    .site-header .nav-search{
+        display:none;
+    }
+
+
+    /* Cart */
+
+    .site-header .cart-link{
+        font-size:0;
+        display:block;
+    }
+
+
+    .site-header .cart-link::before{
+        content:"🛒";
+        font-size:22px;
+    }
+
+
+    /* Hide login/signup on mobile */
+
+    .site-header .nav-actions .btn{
+        display:none;
+    }
+
+
+    /* NAV MENU */
+
+    .site-header .main-nav{
+        display:none;
+    }
+
+
+    .site-header .main-nav.open{
+        display:flex;
+        position:absolute;
+        top:70px;
+        left:0;
+        width:100%;
+        background:#fff;
+        flex-direction:column;
+        gap:15px;
+        padding:20px;
+        box-shadow:0 10px 25px rgba(0,0,0,.15);
+        z-index:100;
+    }
+
+
+    /* TOP BAR */
+
+    .topbar-inner{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        white-space:nowrap;
+        overflow:hidden;
+    }
+
+
+    .topbar span{
+        font-size:.75rem;
+    }
+
+
+
+    /* CART PAGE FIX */
+
+    .cart-layout{
+        grid-template-columns:1fr;
+    }
+
+
+    .data-table{
+        width:100%;
+        overflow:visible;
+        white-space:normal;
+    }
+
+
+    .data-table table{
+        width:100%;
+    }
+
+
+    .cart-product-cell{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+    }
+
+.site-header .main-nav .mobile-menu-auth{
+    display:block;
+}
+
+.site-header .nav-actions .btn{
+    display:none;
+}
 }
 
 /*  Footer  */
@@ -1293,6 +1422,7 @@ ul {
     grid-template-columns: 1fr;
   }
 }
+
 /*==========================
 Animations
 ==========================*/
@@ -1440,5 +1570,374 @@ transition:.4s;
 .newsletter:hover{
 
 transform:scale(1.02);
+
+}
+/* Mobile Menu Auth Links */
+
+.mobile-menu-auth{
+    display:none;
+}
+
+
+@media(max-width:768px){
+
+    .site-header .main-nav .mobile-menu-auth{
+        display:block;
+        color:var(--brown);
+        padding:8px 0;
+        font-size:1rem;
+    }
+.site-header .account-menu{
+    display:none;
+}
+/* Mobile Promo Strip */
+
+@media(max-width:768px){
+
+    .promo-grid{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:15px;
+    }
+
+
+    .promo-item{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        padding:12px 8px;
+    }
+
+}
+}
+
+.cart-product-cell a,
+    .cart-product-name a,
+    .cart-item-name a{
+        color:#000 !important;
+        text-decoration:none;
+    }
+
+    .cart-product-cell a:hover,
+    .cart-product-name a:hover,
+    .cart-item-name a:hover{
+        color:#000 !important;
+    }
+/* =========================
+   MOBILE CHECKOUT PAGE
+========================= */
+
+@media(max-width:768px){
+
+    .checkout-layout{
+        display:flex;
+        flex-direction:column;
+        gap:25px;
+    }
+
+
+    /* Form */
+
+    .checkout-form-wrap{
+        width:100%;
+    }
+
+
+    .checkout-form-wrap .form{
+        padding:0;
+    }
+
+
+    .checkout-form-wrap h3{
+        font-size:1.1rem;
+        margin-bottom:15px;
+    }
+
+
+    .form-row{
+        margin-bottom:15px;
+    }
+
+
+    .form-row label{
+        font-size:.9rem;
+    }
+
+
+    .form-row input,
+    .form-row textarea{
+        width:100%;
+        font-size:.9rem;
+        padding:10px;
+    }
+
+
+    /* City + Postal code */
+
+    .form-row.two-col{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:15px;
+    }
+
+
+    /* Payment */
+
+    .payment-options{
+        display:flex;
+        flex-direction:column;
+        gap:12px;
+    }
+
+
+    .payment-option{
+        width:100%;
+        padding:12px;
+    }
+
+
+    /* Place Order Button */
+
+    .checkout-form-wrap .btn-lg{
+        width:100%;
+        padding:12px;
+        font-size:1rem;
+    }
+
+
+
+    /* Order Summary */
+
+    .cart-summary{
+        width:100%;
+        padding:15px;
+    }
+
+
+    .cart-summary h3{
+        font-size:1.1rem;
+    }
+
+
+    .checkout-line{
+        display:grid;
+        grid-template-columns:55px 1fr auto;
+        gap:10px;
+        align-items:center;
+    }
+
+
+    .checkout-line img{
+        width:55px;
+        height:55px;
+        object-fit:cover;
+        border-radius:8px;
+    }
+
+
+    .checkout-line-info span:first-child{
+        font-size:.85rem;
+    }
+
+
+    .checkout-line-qty{
+        font-size:.75rem;
+    }
+
+
+    .summary-row{
+        font-size:.9rem;
+    }
+
+
+    .summary-row.total{
+        font-size:1rem;
+    }
+ .checkout-layout{
+        display:flex;
+        flex-direction:column;
+    }
+
+
+    /* Order Summary first */
+    .cart-summary{
+        order:1;
+    }
+
+
+    /* Delivery form second */
+    .checkout-form-wrap{
+        order:2;
+        margin-top:10px;
+        padding:0 10px;
+    }
+
+
+    /* Extra spacing for form */
+    .checkout-form-wrap .form{
+        padding:15px 0;
+    }
+}
+/* =========================
+   MOBILE ORDER DETAILS PAGE
+========================= */
+
+@media(max-width:768px){
+
+    .order-details-grid{
+        display:flex;
+        flex-direction:column;
+        gap:25px;
+    }
+
+
+    /* Order items first */
+    .order-items-wrap{
+        width:100%;
+    }
+
+
+    .order-items-wrap h3,
+    .cart-summary h3{
+        font-size:1.1rem;
+        margin-bottom:12px;
+    }
+
+
+    /* Remove table horizontal overflow */
+
+    .order-items-wrap .data-table{
+        width:100%;
+        display:block;
+        overflow:visible;
+        white-space:normal;
+    }
+
+
+    .order-items-wrap table{
+        width:100%;
+        border-collapse:collapse;
+    }
+
+
+    /* Product row */
+
+    .cart-product-cell{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        text-align:center;
+        gap:8px;
+    }
+
+
+    .cart-product-cell img{
+        width:60px;
+        height:60px;
+        object-fit:cover;
+        border-radius:8px;
+    }
+
+
+    .cart-product-cell span{
+        font-size:.85rem;
+    }
+
+
+    .order-items-wrap td,
+    .order-items-wrap th{
+        padding:8px 5px;
+        font-size:.8rem;
+    }
+
+
+    /* Cancel button */
+
+    .order-items-wrap .btn{
+        width:100%;
+        margin-top:15px;
+    }
+
+
+    /* Summary */
+
+    .cart-summary{
+        width:100%;
+        padding:15px;
+    }
+
+
+    .cart-summary p{
+        font-size:.9rem;
+        line-height:1.6;
+    }
+
+
+    .summary-row{
+        font-size:.9rem;
+    }
+
+
+    .summary-row.total{
+        font-size:1rem;
+    }
+
+
+    /* Status */
+
+    .status-pill{
+        display:inline-block;
+        padding:6px 12px;
+        font-size:.8rem;
+    }
+
+}
+/* =========================
+   PRODUCTS PAGE - MOBILE
+========================= */
+
+@media (max-width:768px){
+
+  .products-layout{
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+  }
+
+  .filters-panel{
+    width:100%;
+    max-width:100%;
+    order:1;
+  }
+
+  .products-main{
+    width:100%;
+    order:2;
+  }
+
+  .products-toolbar{
+    display:flex;
+    justify-content:flex-end;
+    margin-bottom:18px;
+  }
+
+  .sort-form{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap;
+  }
+
+  .sort-form select{
+    max-width:180px;
+  }
+
+  .product-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+  }
 
 }

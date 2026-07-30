@@ -313,27 +313,464 @@
   margin-bottom: 4px;
 }
 
-@media (max-width: 900px) {
-  .admin-shell {
-    flex-direction: column;
-  }
 
-  .admin-sidebar {
-    width: 100%;
-    flex-direction: row;
-    overflow-x: auto;
-  }
+/* ================================
+   ADMIN MOBILE RESPONSIVE
+================================ */
 
-  .admin-nav {
-    flex-direction: row;
-  }
+@media(max-width:768px){
 
-  .admin-sidebar-footer {
-    display: none;
-  }
 
-  .admin-panels,
-  .form-grid {
-    grid-template-columns: 1fr;
+    /* Main layout */
+
+    .admin-shell{
+        display:block;
+    }
+
+
+    /* Sidebar becomes top menu */
+
+    .admin-sidebar{
+        width:100%;
+        height:auto;
+        padding:15px 0;
+    }
+
+
+    .admin-brand{
+        align-items:center;
+        text-align:center;
+        padding-bottom:15px;
+    }
+
+
+    .admin-nav{
+        flex-direction:column;
+        padding:0 15px;
+        gap:5px;
+    }
+
+
+    .admin-nav a{
+        padding:10px 12px;
+        font-size:.9rem;
+    }
+
+
+    .admin-sidebar-footer{
+        display:flex;
+        justify-content:space-around;
+        padding:10px 15px;
+    }
+
+
+    /* Content */
+
+    .admin-topbar{
+        padding:15px;
+        flex-direction:column;
+        align-items:flex-start;
+        gap:8px;
+    }
+
+
+    .admin-topbar h1{
+        font-size:1.2rem;
+    }
+
+
+    .admin-body-content{
+        padding:15px;
+    }
+
+
+
+    /* Dashboard cards */
+
+    .stats-grid{
+        grid-template-columns:1fr;
+        gap:12px;
+    }
+
+
+    .stat-box{
+        padding:15px;
+    }
+
+
+    .stat-icon{
+        font-size:1.5rem;
+    }
+
+
+
+    /* Dashboard panels */
+
+    .admin-panels{
+        grid-template-columns:1fr;
+    }
+
+
+    .admin-panel{
+        padding:15px;
+        overflow:hidden;
+    }
+
+
+
+    /* Toolbar */
+
+    .admin-toolbar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+
+
+    .admin-search-form{
+        width:100%;
+        flex-direction:column;
+    }
+
+
+    .admin-search-form input,
+    .admin-search-form button{
+        width:100%;
+    }
+
+
+    .admin-toolbar .btn{
+        width:100%;
+        text-align:center;
+    }
+
+
+
+    /* Tables */
+
+    .data-table{
+        display:block;
+        width:100%;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+
+
+    .data-table th,
+    .data-table td{
+        padding:8px;
+        font-size:.8rem;
+    }
+
+
+
+    /* Product actions */
+
+    .admin-actions{
+        flex-direction:column;
+        gap:6px;
+    }
+
+
+    .admin-actions .btn{
+        width:100%;
+    }
+
+
+
+    /* Forms */
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+
+    .admin-form{
+        max-width:100%;
+    }
+
+
+    .status-form{
+        flex-direction:column;
+        width:100%;
+    }
+
+
+    .status-form select,
+    .status-form button{
+        width:100%;
+    }
+
+
+    /* Messages */
+
+    .message-card{
+        padding:14px;
+    }
+
+
+
+    /* Login */
+
+    .admin-login-card{
+        margin:20px;
+        padding:25px;
+    }
+
+}
+
+
+
+/* Small phones */
+
+@media(max-width:480px){
+
+    .admin-brand{
+        font-size:1.1rem;
+    }
+
+
+    .admin-nav a{
+        font-size:.85rem;
+    }
+
+
+    .stat-box strong{
+        font-size:1.1rem;
+    }
+
+
+    .admin-panel-head{
+        flex-direction:column;
+        gap:8px;
+    }
+
+}
+/* =========================
+   ADMIN MOBILE ONLY
+========================= */
+
+.admin-toggle{
+    display:none;
+}
+
+
+@media(max-width:768px){
+
+
+    html,body{
+        overflow-x:hidden;
+    }
+
+
+    /* hamburger */
+
+    .admin-toggle{
+    display:block;
+    position:absolute;
+    top:15px;
+    right:15px;
+    z-index:1000;
+    background:white;
+    border:none;
+    font-size:28px;
+    cursor:pointer;
+    border-radius:8px;
+    padding:5px 10px;
+}
+
+
+
+    /* sidebar hidden */
+
+    .admin-sidebar{
+
+        position:fixed;
+        top:0;
+        left:-260px;
+        width:240px;
+        height:100vh;
+        z-index:999;
+        transition:.3s;
+
+    }
+
+
+    .admin-sidebar.open{
+
+        left:0;
+
+    }
+
+
+
+    .admin-content{
+
+        width:100%;
+
+    }
+
+
+
+    /* Recent orders / tables fix */
+
+    .admin-panel{
+
+        overflow:hidden;
+
+    }
+
+
+    .data-table{
+
+        display:block;
+        width:100%;
+        overflow-x:auto;
+        white-space:nowrap;
+
+    }
+     .admin-body{
+        position:relative;
+    }
   }
+  /* =========================
+   ADMIN DASHBOARD TABLE MOBILE
+========================= */
+
+@media(max-width:768px){
+
+    .admin-panel{
+        width:100%;
+        overflow:hidden;
+    }
+
+
+    /* remove horizontal scroll */
+    .data-table{
+        display:block;
+        width:100%;
+        overflow:visible;
+        white-space:normal;
+    }
+
+
+    .data-table table{
+        width:100%;
+        min-width:0;
+        border-collapse:collapse;
+    }
+
+
+    .data-table thead{
+        display:none;
+    }
+
+
+    .data-table tbody,
+    .data-table tr{
+        display:block;
+        width:100%;
+    }
+
+
+    .data-table tr{
+        background:#fff;
+        margin-bottom:12px;
+        padding:12px;
+        border-radius:10px;
+        box-shadow:0 3px 12px rgba(0,0,0,.08);
+    }
+
+
+    .data-table td{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        width:100%;
+        padding:6px 0;
+        border:none;
+        font-size:.85rem;
+    }
+
+
+
+.data-table td::before{
+    content:attr(data-label);
+    font-weight:600;
+    color:var(--brown-light);
+}
+
+
+
+    /* Recent Orders labels */
+
+    .admin-panel:first-child .data-table td:nth-child(1)::before{
+        content:"Order:";
+    }
+
+    .admin-panel:first-child .data-table td:nth-child(2)::before{
+        content:"Customer:";
+    }
+
+    .admin-panel:first-child .data-table td:nth-child(3)::before{
+        content:"Total:";
+    }
+
+    .admin-panel:first-child .data-table td:nth-child(4)::before{
+        content:"Status:";
+    }
+
+
+    .admin-panel:first-child .data-table td:nth-child(5)::before{
+        content:"";
+    }
+
+
+
+    /* Top Rated Products */
+
+    .admin-panel:nth-child(2) .data-table td:nth-child(1)::before{
+        content:"Product:";
+    }
+
+    .admin-panel:nth-child(2) .data-table td:nth-child(2)::before{
+        content:"Rating:";
+    }
+
+    .admin-panel:nth-child(2) .data-table td:nth-child(3)::before{
+        content:"Stock:";
+    }
+
+
+    .admin-panel .btn{
+        width:auto;
+    }
+
+}
+@media(max-width:768px){
+
+    .admin-actions{
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        gap:6px;
+    }
+
+    .admin-actions .btn{
+        width:auto;
+        min-width:80px;
+    }
+
+    .admin-actions form{
+        width:auto;
+    }
+     .data-table td.admin-actions{
+        border-top: 1px solid var(--brown);
+        padding-top: 12px;
+        margin-top: 8px;
+    }
+     .data-table td.admin-actions{
+        padding-left:20px;
+    }
+
+
 }

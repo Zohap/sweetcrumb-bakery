@@ -4,15 +4,29 @@
     <table class="data-table">
       <thead><tr><th>Product</th><th>Price</th><th>Qty</th><th>Total</th></tr></thead>
       <tbody>
-        <% order.items.forEach(function(item) { %>
-          <tr>
-            <td class="cart-product-cell"><img src="<%= item.image %>" alt="<%= item.name %>" /><span><%= item.name %></span></td>
-            <td><%= currencySymbol %><%= item.price.toFixed(0) %></td>
-            <td><%= item.quantity %></td>
-            <td><%= currencySymbol %><%= (item.price * item.quantity).toFixed(0) %></td>
-          </tr>
-        <% }) %>
-      </tbody>
+  <% order.items.forEach(function(item) { %>
+    <tr>
+
+      <td data-label="Product" class="cart-product-cell">
+        <img src="<%= item.image %>" alt="<%= item.name %>" />
+        <span><%= item.name %></span>
+      </td>
+
+      <td data-label="Price">
+        <%= currencySymbol %><%= item.price.toFixed(0) %>
+      </td>
+
+      <td data-label="Quantity">
+        <%= item.quantity %>
+      </td>
+
+      <td data-label="Total">
+        <%= currencySymbol %><%= (item.price * item.quantity).toFixed(0) %>
+      </td>
+
+    </tr>
+  <% }) %>
+</tbody>
     </table>
 
     <h3>Update Status</h3>

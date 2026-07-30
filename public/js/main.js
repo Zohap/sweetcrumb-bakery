@@ -21,7 +21,22 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 500);
 
     }, 4000);
+    
   });
+  // Admin sidebar toggle
+
+var adminToggle = document.getElementById('adminToggle');
+var adminSidebar = document.querySelector('.admin-sidebar');
+
+if(adminToggle && adminSidebar){
+
+    adminToggle.addEventListener('click', function(){
+
+        adminSidebar.classList.toggle('open');
+
+    });
+
+}
 });
 // Initialize AOS
 
@@ -53,12 +68,3 @@ header.classList.remove("scrolled");
 });
 
 
-// Stagger Product Cards
-
-const cards=document.querySelectorAll(".product-card");
-
-cards.forEach((card,index)=>{
-
-card.style.animationDelay=`${index*0.08}s`;
-
-});

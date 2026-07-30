@@ -8,23 +8,47 @@
 <% if (users.length) { %>
   <table class="data-table">
     <thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Orders</th><th>Total Spent</th><th>Status</th><th></th></tr></thead>
-    <tbody>
-      <% users.forEach(function(u) { %>
-        <tr>
-          <td><%= u.name %></td>
-          <td><%= u.email %></td>
-          <td><%= u.phone || '—' %></td>
-          <td><%= u.orderCount %></td>
-          <td><%= currencySymbol %><%= u.totalSpent.toFixed(0) %></td>
-          <td><span class="status-pill <%= u.isBlocked ? 'status-cancelled' : 'status-delivered' %>"><%= u.isBlocked ? 'Blocked' : 'Active' %></span></td>
-          <td>
-            <form action="/admin/users/<%= u._id %>/toggle-block" method="POST" onsubmit="return confirm('<%= u.isBlocked ? 'Unblock' : 'Block' %> this customer?');">
-              <button type="submit" class="btn btn-sm <%= u.isBlocked ? 'btn-outline' : 'btn-danger' %>"><%= u.isBlocked ? 'Unblock' : 'Block' %></button>
-            </form>
-          </td>
-        </tr>
-      <% }) %>
-    </tbody>
+   <tbody>
+  <% users.forEach(function(u) { %>
+    <tr>
+
+      <td data-label="Name">
+        <%= u.name %>
+      </td>
+
+      <td data-label="Email">
+        <%= u.email %>
+      </td>
+
+      <td data-label="Phone">
+        <%= u.phone || '—' %>
+      </td>
+
+      <td data-label="Orders">
+        <%= u.orderCount %>
+      </td>
+
+      <td data-label="Total Spent">
+        <%= currencySymbol %><%= u.totalSpent.toFixed(0) %>
+      </td>
+
+      <td data-label="Status">
+        <span class="status-pill <%= u.isBlocked ? 'status-cancelled' : 'status-delivered' %>">
+          <%= u.isBlocked ? 'Blocked' : 'Active' %>
+        </span>
+      </td>
+
+      <td data-label="Actions">
+        <form action="/admin/users/<%= u._id %>/toggle-block" method="POST">
+          <button type="submit" class="btn btn-sm <%= u.isBlocked ? 'btn-outline' : 'btn-danger' %>">
+            <%= u.isBlocked ? 'Unblock' : 'Block' %>
+          </button>
+        </form>
+      </td>
+
+    </tr>
+  <% }) %>
+</tbody>
   </table>
 
   <% if (totalPages > 1) { %>

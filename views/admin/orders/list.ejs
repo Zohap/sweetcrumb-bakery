@@ -12,19 +12,47 @@
 <% if (orders.length) { %>
   <table class="data-table">
     <thead><tr><th>Order #</th><th>Customer</th><th>Date</th><th>Total</th><th>Payment</th><th>Status</th><th></th></tr></thead>
-    <tbody>
-      <% orders.forEach(function(o) { %>
-        <tr>
-          <td><%= o.orderNumber %></td>
-          <td><%= o.user ? o.user.name : 'Deleted user' %><br /><small><%= o.user ? o.user.email : '' %></small></td>
-          <td><%= o.createdAt.toDateString() %></td>
-          <td><%= currencySymbol %><%= o.grandTotal.toFixed(0) %></td>
-          <td><%= o.paymentMethod === 'cod' ? 'COD' : 'Card' %></td>
-          <td><span class="status-pill status-<%= o.status %>"><%= o.status %></span></td>
-          <td><a href="/admin/orders/<%= o._id %>" class="btn btn-outline btn-sm">Manage</a></td>
-        </tr>
-      <% }) %>
-    </tbody>
+   <tbody>
+  <% orders.forEach(function(o) { %>
+    <tr>
+
+      <td data-label="Order #">
+        <%= o.orderNumber %>
+      </td>
+
+      <td data-label="Customer">
+        <%= o.user ? o.user.name : 'Deleted user' %>
+        <br />
+        <small><%= o.user ? o.user.email : '' %></small>
+      </td>
+
+      <td data-label="Date">
+        <%= o.createdAt.toDateString() %>
+      </td>
+
+      <td data-label="Total">
+        <%= currencySymbol %><%= o.grandTotal.toFixed(0) %>
+      </td>
+
+      <td data-label="Payment">
+        <%= o.paymentMethod === 'cod' ? 'COD' : 'Card' %>
+      </td>
+
+      <td data-label="Status">
+        <span class="status-pill status-<%= o.status %>">
+          <%= o.status %>
+        </span>
+      </td>
+
+      <td data-label="Actions">
+        <a href="/admin/orders/<%= o._id %>" class="btn btn-outline btn-sm">
+          Manage
+        </a>
+      </td>
+
+    </tr>
+  <% }) %>
+</tbody>
   </table>
 
   <% if (totalPages > 1) { %>

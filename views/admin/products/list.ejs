@@ -11,27 +11,58 @@
     <thead>
       <tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Stock</th><th>Status</th><th>Actions</th></tr>
     </thead>
-    <tbody>
-      <% products.forEach(function(p) { %>
-        <tr>
-          <td><img src="<%= p.image %>" alt="<%= p.name %>" class="admin-thumb" /></td>
-          <td><%= p.name %><% if (p.isFeatured) { %> <span class="tag">Featured</span><% } %></td>
-          <td><%= p.category ? p.category.name : '—' %></td>
-          <td>
-            <%= currencySymbol %><%= p.price.toFixed(0) %>
-            <% if (p.discountPrice > 0) { %><br /><small>Sale: <%= currencySymbol %><%= p.discountPrice.toFixed(0) %></small><% } %>
-          </td>
-          <td class="<%= p.stock <= 5 ? 'text-warn' : '' %>"><%= p.stock %></td>
-          <td><span class="status-pill <%= p.isActive ? 'status-delivered' : 'status-cancelled' %>"><%= p.isActive ? 'Active' : 'Hidden' %></span></td>
-          <td class="admin-actions">
-            <a href="/admin/products/<%= p._id %>/edit" class="btn btn-outline btn-sm">Edit</a>
-            <form action="/admin/products/<%= p._id %>/delete" method="POST" onsubmit="return confirm('Delete this product permanently?');">
-              <button type="submit" class="btn btn-danger btn-sm">Delete</button>
-            </form>
-          </td>
-        </tr>
-      <% }) %>
-    </tbody>
+   <tbody>
+  <% products.forEach(function(p) { %>
+    <tr>
+
+      <td data-label="Image">
+        <img src="<%= p.image %>" alt="<%= p.name %>" class="admin-thumb" />
+      </td>
+
+      <td data-label="Name">
+        <%= p.name %>
+        <% if (p.isFeatured) { %>
+          <span class="tag">Featured</span>
+        <% } %>
+      </td>
+
+      <td data-label="Category">
+        <%= p.category ? p.category.name : '—' %>
+      </td>
+
+      <td data-label="Price">
+        <%= currencySymbol %><%= p.price.toFixed(0) %>
+        <% if (p.discountPrice > 0) { %>
+          <br />
+          <small>Sale: <%= currencySymbol %><%= p.discountPrice.toFixed(0) %></small>
+        <% } %>
+      </td>
+
+      <td data-label="Stock" class="<%= p.stock <= 5 ? 'text-warn' : '' %>">
+        <%= p.stock %>
+      </td>
+
+      <td data-label="Status">
+        <span class="status-pill <%= p.isActive ? 'status-delivered' : 'status-cancelled' %>">
+          <%= p.isActive ? 'Active' : 'Hidden' %>
+        </span>
+      </td>
+
+      <td data-label="Actions" class="admin-actions">
+        <a href="/admin/products/<%= p._id %>/edit" class="btn btn-outline btn-sm">
+          Edit
+        </a>
+
+        <form action="/admin/products/<%= p._id %>/delete" method="POST" onsubmit="return confirm('Delete this product permanently?');">
+          <button type="submit" class="btn btn-danger btn-sm">
+            Delete
+          </button>
+        </form>
+      </td>
+
+    </tr>
+  <% }) %>
+</tbody>
   </table>
 
   <% if (totalPages > 1) { %>
