@@ -1941,3 +1941,244 @@ transform:scale(1.02);
   }
 
 }
+/* =========================
+   CONTACT PAGE MOBILE
+========================= */
+
+@media (max-width:768px){
+
+  .contact-grid{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+  }
+
+  .contact-info,
+  .contact-form-wrap{
+    width:100%;
+    max-width:100%;
+  }
+
+  .contact-form-wrap .form{
+    padding:0;
+  }
+
+  .contact-form-wrap .btn{
+    width:100%;
+  }
+}
+.mobile-menu-auth-form{
+    display:none;
+}
+
+@media (max-width:768px){
+
+    .mobile-menu-auth-form{
+        display:block;
+        width:100%;
+        margin:0;
+    }
+
+    .mobile-menu-auth-form button{
+        display:block;
+        width:100%;
+        background:none;
+        border:none;
+        color:var(--brown);
+        font:inherit;
+        font-size:1rem;
+        text-align:left;
+        padding:8px 0;
+        cursor:pointer;
+    }
+/*  MY ACCOUNT - MOBILE*/
+
+  /* Main layout */
+
+  .account-grid{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+  }
+
+  .account-form-wrap,
+  .account-orders-wrap{
+    width:100%;
+    max-width:100%;
+  }
+
+  /* Form */
+
+  .account-form-wrap .form{
+    padding:0;
+  }
+
+  .account-form-wrap h2,
+  .account-orders-wrap h2{
+    font-size:1.2rem;
+    margin-bottom:15px;
+  }
+
+  .account-form-wrap h3{
+    font-size:1rem;
+    margin:20px 0 12px;
+  }
+
+  .account-form-wrap .form-row.two-col{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:15px;
+  }
+
+  .account-form-wrap input{
+    width:100%;
+  }
+
+  .account-form-wrap .btn{
+    width:100%;
+    margin-top:10px;
+  }
+
+  /* Recent Orders */
+
+  .account-orders-wrap .section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+
+  /* Table responsive */
+
+  .account-orders-wrap .data-table{
+    display:block;
+    width:100%;
+    overflow-x:auto;
+    white-space:nowrap;
+  }
+
+  .account-orders-wrap table{
+    min-width:520px;
+  }
+/*  PRODUCT DETAILS - MOBILE*/
+
+
+  /* Image + details */
+  .product-details-grid{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+  }
+
+  .product-details-img,
+  .product-details-info{
+    width:100%;
+    max-width:100%;
+  }
+
+  
+
+  /* Breadcrumb */
+  .breadcrumbs{
+    font-size:.85rem;
+    line-height:1.6;
+    word-break:break-word;
+    margin-bottom:18px;
+  }
+
+  /* Title */
+  .product-details-info h1{
+    font-size:1.7rem;
+    line-height:1.3;
+    margin-bottom:10px;
+  }
+
+  /* Rating */
+  .product-card-rating{
+    flex-wrap:wrap;
+    gap:6px;
+  }
+
+  .rating-count{
+    font-size:.85rem;
+  }
+
+  /* Price */
+  .product-details-price{
+    margin:15px 0;
+  }
+
+  .price-now.big{
+    font-size:1.8rem;
+  }
+
+  .price-old{
+    font-size:1rem;
+  }
+
+  /* Description */
+  .product-details-desc{
+    font-size:.95rem;
+    line-height:1.7;
+  }
+
+  /* Meta */
+  .product-meta-list{
+    padding-left:18px;
+    line-height:1.8;
+  }
+
+  /* Ingredients */
+  .ingredients-box{
+    padding:14px;
+    font-size:.9rem;
+  }
+
+  /* Add to cart */
+  .add-to-cart-form{
+    display:flex;
+    flex-direction:column;
+    gap:15px;
+    margin-top:20px;
+  }
+
+  .add-to-cart-form input[type="number"]{
+    width:100%;
+  }
+
+  .add-to-cart-form .btn{
+    width:100%;
+  }
+
+  /* Reviews */
+
+  .reviews-section{
+    margin-top:40px;
+  }
+
+  .review-form .btn{
+    width:100%;
+  }
+
+  .review-item{
+    padding:15px;
+  }
+
+  .review-item-head{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    gap:5px;
+  }
+
+  /* Related Products */
+
+  .product-grid{
+    grid-template-columns:repeat(2,1fr);
+    gap:15px;
+  }
+
+
+}

@@ -17,11 +17,21 @@
       <a href="/products" class="<%= currentPath.startsWith('/products') ? 'active' : '' %>">Products</a>
       <a href="/about" class="<%= currentPath === '/about' ? 'active' : '' %>">About</a>
       <a href="/contact" class="<%= currentPath === '/contact' ? 'active' : '' %>">Contact</a>
-      <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+     <% if (typeof currentUser !== 'undefined' && currentUser) { %>
 
 <a href="/account" class="mobile-menu-auth">
   👤 <%= currentUser.name.split(' ')[0] %>
 </a>
+
+<a href="/orders" class="mobile-menu-auth">
+  📦 My Orders
+</a>
+
+<form action="/logout" method="POST" class="mobile-menu-auth-form">
+  <button type="submit">
+    🚪 Logout
+  </button>
+</form>
 
 <% } else { %>
 
